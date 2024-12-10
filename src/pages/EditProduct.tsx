@@ -1,6 +1,6 @@
 import { Link, Form, useActionData, ActionFunctionArgs, redirect, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
-import { addProduct, getProductById, updateProduct } from "../services/ProductService";
+import { getProductById, updateProduct } from "../services/ProductService";
 import { Product } from "../types";
 import ProductForm from "../components/ProductForm";
 
@@ -90,7 +90,7 @@ export default function EditProduct() {
                 <input
                     type="submit"
                     className="mt-5 w-full bg-indigo-600 p-2 text-white font-bold text-lg cursor-pointer rounded"
-                    value="Guardar Producto"
+                    value="Guardar Cambios"
                 />
             </Form>
 
