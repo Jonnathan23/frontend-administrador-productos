@@ -25,7 +25,7 @@ export async function addProduct(data: ProductData) {
             throw new Error('Datos inválidos')
         }
     } catch (error) {
-        console.log(error)
+        
     }
 }
 
@@ -41,9 +41,9 @@ export async function getProducts() {
             throw new Error('Hubo un error')
         }
 
-        console.log(result)
+
     } catch (error) {
-        console.log(error)
+        
     }
 }
 
@@ -59,9 +59,8 @@ export async function getProductById(id: Product['id']) {
             throw new Error('Hubo un error')
         }
 
-        console.log(result)
-    } catch (error) {
-        console.log(error)
+        
+    } catch (error) {        
     }
 }
 
@@ -83,7 +82,7 @@ export async function updateProduct(id: Product['id'], data: ProductData) {
 
 
     } catch (error) {
-        console.log(error)
+        
     }
 }
 
@@ -91,9 +90,9 @@ export async function updateProductAvailability(id: Product['id']) {
     try {
         const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
         await axios.patch(url)
-        
+
     } catch (error) {
-        console.log(error)
+        
     }
 }
 
@@ -101,8 +100,8 @@ export async function deleteProduct(id: Product['id']) {
     try {
         const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
         await axios.delete(url)
-        
+
     } catch (error) {
-        console.log(error)
+        
     }
 }
