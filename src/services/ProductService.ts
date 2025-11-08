@@ -25,13 +25,13 @@ export async function addProduct(data: ProductData) {
             throw new Error('Datos inválidos')
         }
     } catch (error) {
-        
+        console.log(error)
     }
 }
 
 export async function getProducts() {
     try {
-        const url = `${import.meta.env.VITE_API_URL}/api/products`
+        const url = `/api/products`
         const { data } = await axios.get(url)
         const result = safeParse(ProductsSchema, data.data)
 
@@ -43,7 +43,7 @@ export async function getProducts() {
 
 
     } catch (error) {
-        
+     console.log(error)   
     }
 }
 
