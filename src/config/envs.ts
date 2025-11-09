@@ -1,5 +1,3 @@
-
-
 const verifyObject = <T>(variable: T) => {
     if (!variable) throw new Error('Sin variable de entorno')
 

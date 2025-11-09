@@ -1,17 +1,6 @@
-import {boolean, number, object, string, InferOutput, array} from 'valibot'
+import z from "zod";
+import { draftProductSchema, ProductSchema } from "../utils/products.schema";
 
-export const DraftProductSchema = object({
-    name: string(),
-    price: number()
-})
 
-export const ProductSchema = object({
-    id: number(),
-    name: string(),
-    price: number(),
-    availability: boolean()
-})
-
-export const ProductsSchema = array(ProductSchema)
-
-export type Product = InferOutput<typeof ProductSchema>
+export type Product = z.infer<typeof ProductSchema>
+export type DraftProduct = z.infer<typeof draftProductSchema>
