@@ -6,54 +6,56 @@ export class Api {
     private readonly api: AxiosInstance;
 
     constructor() {
+        console.log(envs.BACKEND_URL)
         this.api = axios.create({
             baseURL: envs.BACKEND_URL!
         })
     }
 
-    async get(url: string) {
+    get = async (url: string) => {
         try {
             const { data } = await this.api.get(url)
-
-            return { data: data }
+            console.log('data')
+            console.log(data)
+            return data
         } catch (error) {
             console.log(error)
         }
     }
 
-    async post<T>(url: string, dataForm: T) {
+    post = async <T>(url: string, dataForm: T) => {
         try {
             const { data } = await this.api.post(url, dataForm)
 
-            return { data: data }
+            return data
 
         } catch (error) {
             console.log(error)
         }
     }
 
-    async put<T>(url: string, dataForm: T) {
+    put = async <T>(url: string, dataForm: T) => {
         try {
             const { data } = await this.api.put(url, dataForm)
 
-            return { data: data }
+            return data
         } catch (error) {
             console.log(error)
         }
     }
 
-    async patch<T>(url: string, dataForm?: T) {
+    patch = async <T>(url: string, dataForm?: T) => {
         try {
             const { data } = await this.api.patch(url, dataForm)
 
-            return { data: data }
+            return data
         } catch (error) {
             console.log(error)
 
         }
     }
 
-    async delete(url: string) {
+    delete = async (url: string) => {
         try {
             await this.api.delete(url)
         } catch (error) {

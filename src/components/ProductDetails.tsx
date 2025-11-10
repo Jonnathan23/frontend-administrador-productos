@@ -1,21 +1,11 @@
-import { ActionFunctionArgs, Form, Link, redirect, useFetcher } from "react-router-dom"
+import { Form, Link, useFetcher } from "react-router-dom"
 import { Product } from "../types"
 import { formatCurrency } from "../utils/utils"
-import { deleteProduct } from "../services/ProductService"
 
 type ProductDetailsProps = {
     product: Product
 }
 
-export async function action({ params }: ActionFunctionArgs) {
-
-    if (params.id !== undefined) {
-        await deleteProduct(+params.id)
-
-    }
-
-    return redirect('/')
-}
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
 

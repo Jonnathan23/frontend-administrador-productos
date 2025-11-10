@@ -1,10 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './layouts/Layout'
-import Products, { loader as productsLoader, action as updateAvailabilityAction } from './pages/Products'
-import NewProduct, { action as newProductAction } from './pages/NewProduct'
-import EditProduct, { loader as editProductLoader, action as editProductAction } from './pages/EditProduct'
-import { action as deleteProductAction } from './components/ProductDetails'
+import Products from './pages/Products'
+import NewProduct from './pages/NewProduct'
+import EditProduct from './pages/EditProduct'
 
+/*
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -34,3 +34,24 @@ export const router = createBrowserRouter([
         ]
     }
 ])
+
+*/
+
+
+export default function Router() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path='/' element={<Products />} />
+                    {
+                        //<Route path='/products/new' element={<NewProduct />} />
+                    }
+                    {
+                        //    <Route path='/products/:id/edit' element={<EditProduct />} />
+                    }
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
+}

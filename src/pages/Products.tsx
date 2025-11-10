@@ -1,20 +1,11 @@
-import { ActionFunctionArgs, Link, useLoaderData } from 'react-router-dom'
-import { getProducts, updateProductAvailability } from '../services/ProductService'
-import { Product } from '../types'
+import { Link } from 'react-router-dom'
 import ProductDetails from '../components/ProductDetails'
+import { useGetAllProducts } from '../hooks/useProducts.use'
 
-export async function loader() {
-    const products = await getProducts()
-
-    return products
-}
-export async function action({request}: ActionFunctionArgs) {
-    const data = Object.fromEntries(await request.formData())
-    await updateProductAvailability(+data.id)
-}
 
 export default function Products() {
-    const products = useLoaderData() as Product[]
+    const { data: products } = useGetAllProducts()
+
 
     return (
         <>
@@ -42,11 +33,17 @@ export default function Products() {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                        products.map(product => (
-                            <ProductDetails key={product.id}  product={product}/>
-                        ))
-                        }
+                        {products.length === 0 ? (
+                            <tr>
+                                <td colSpan={4} className="text-center py-4 text-gray-500">
+                                    Sin productos
+                                </td>
+                            </tr>
+                        ) : (
+                            products.map(product => (
+                                <ProductDetails key={product.id} product={product} />
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>

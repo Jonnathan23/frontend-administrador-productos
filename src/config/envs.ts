@@ -1,9 +1,10 @@
-const verifyObject = <T>(variable: T) => {
-    if (!variable) throw new Error('Sin variable de entorno')
+const verifyObject = <T>(envVar: T) => {
+    if (!envVar) throw new Error('Sin variable de entorno')
 
+    return envVar
 }
 
 
 export const envs = {
-    BACKEND_URL: verifyObject<string>(import.meta.env.VITE_BACKEND_URL)
+    BACKEND_URL: verifyObject(import.meta.env.VITE_BACKEND_URL)
 }

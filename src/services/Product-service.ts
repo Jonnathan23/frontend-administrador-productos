@@ -17,7 +17,7 @@ export class ProductService {
         this.validation = validation;
     }
 
-    async addProduct(data: ProductData): Promise<void> {
+    addProduct = async (data: ProductData): Promise<void> => {
         try {
             const dataForm = this.validation.parseDraftProductSchema(data);
 
@@ -28,11 +28,13 @@ export class ProductService {
         }
     }
 
-    async getProducts(): Promise<Product[]> {
+    getProducts = async (): Promise<Product[]> => {
         try {
             const url = `/api/products`;
             const data = await this.api.get(url)
-            const products = this.validation.parseAllProducts(data!.data)
+            console.log('data')
+            console.log(data)
+            const products = this.validation.parseAllProducts(data)
 
             return products
         } catch (error) {
@@ -41,11 +43,11 @@ export class ProductService {
         }
     }
 
-    async getProductById(id: Product['id']): Promise<Product> {
+    getProductById = async (id: Product['id']): Promise<Product> => {
         try {
             const url = `/api/products/${id}`;
             const data = await this.api.get(url);
-            const product = this.validation.parseProduct(data!.data);
+            const product = this.validation.parseProduct(data);
 
             return product;
         } catch (error) {
@@ -54,7 +56,7 @@ export class ProductService {
         }
     }
 
-    async updateProduct(id: Product['id'], data: ProductData): Promise<void> {
+    updateProduct = async (id: Product['id'], data: ProductData): Promise<void> => {
         try {
             const dataForm = this.validation.parseUpdateDraftProductSchema(data);
             const url = `/api/products/${id}`
@@ -67,7 +69,7 @@ export class ProductService {
     }
 
 
-    async updateProductAvailability(id: Product['id']): Promise<void> {
+    updateProductAvailability = async (id: Product['id']): Promise<void> => {
         try {
             const url = `/api/products/${id}`;
             await this.api.patch(url)
@@ -78,7 +80,7 @@ export class ProductService {
         }
     }
 
-    async deleteProduct(id: Product['id']): Promise<void> {
+    deleteProduct = async (id: Product['id']): Promise<void> => {
         try {
             const url = `/api/products/${id}`;
             await this.api.delete(url)

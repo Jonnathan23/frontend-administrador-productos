@@ -25,8 +25,12 @@ export class ValidationZodProducts implements ValidationProducts {
     }
 
     parseAllProducts(data: unknown): Product[] {
+        console.log(data)
         const result = allProductsSchema.safeParse(data);
-        if (!result.success) throw new Error(' Error con el servidor');
+        if (!result.success) {
+            console.log(result.error)
+            throw new Error(' Error con el servidor');
+        }
 
         return result.data
     }
